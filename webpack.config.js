@@ -6,20 +6,21 @@ module.exports = {
     path: __dirname,
     filename: 'bundle.js'
   },
-  module:{
-    loaders:[
+  module: {
+    preLoaders: [
+      {
+        test: path.resolve(__dirname, 'src', 'index.js'),
+        loader: 'rukus?["./src/components"]'
+      }
+    ],
+    loaders: [
       {
         test: /\.js$/,
-        loader:'babel-loader',
+        loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
           presets: ['es2015']
         }
-      },
-      {
-        test: /\.tag$/,
-        loader: 'tag',
-        exclude: /node_modules/
       }
     ]
   }
